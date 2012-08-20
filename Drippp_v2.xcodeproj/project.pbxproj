@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		862BE34515E2D2E200927522 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34415E2D2E200927522 /* UIKit.framework */; };
+		862BE34715E2D2E200927522 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34615E2D2E200927522 /* Foundation.framework */; };
+		862BE34915E2D2E200927522 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34815E2D2E200927522 /* CoreGraphics.framework */; };
+		862BE34F15E2D2E200927522 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 862BE34D15E2D2E200927522 /* InfoPlist.strings */; };
+		862BE35115E2D2E200927522 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 862BE35015E2D2E200927522 /* main.m */; };
+		862BE35515E2D2E200927522 /* DRPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 862BE35415E2D2E200927522 /* DRPAppDelegate.m */; };
+		862BE35815E2D2E200927522 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862BE35615E2D2E200927522 /* MainStoryboard.storyboard */; };
+		862BE35B15E2D2E200927522 /* DRPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862BE35A15E2D2E200927522 /* DRPViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		862BE34015E2D2E200927522 /* Drippp_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drippp_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		862BE34415E2D2E200927522 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		862BE34615E2D2E200927522 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		862BE34815E2D2E200927522 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		862BE34C15E2D2E200927522 /* Drippp_v2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Drippp_v2-Info.plist"; sourceTree = "<group>"; };
+		862BE34E15E2D2E200927522 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		862BE35015E2D2E200927522 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		862BE35215E2D2E200927522 /* Drippp_v2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Drippp_v2-Prefix.pch"; sourceTree = "<group>"; };
+		862BE35315E2D2E200927522 /* DRPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRPAppDelegate.h; sourceTree = "<group>"; };
+		862BE35415E2D2E200927522 /* DRPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRPAppDelegate.m; sourceTree = "<group>"; };
+		862BE35715E2D2E200927522 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		862BE35915E2D2E200927522 /* DRPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRPViewController.h; sourceTree = "<group>"; };
+		862BE35A15E2D2E200927522 /* DRPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRPViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		862BE33D15E2D2E200927522 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				862BE34515E2D2E200927522 /* UIKit.framework in Frameworks */,
+				862BE34715E2D2E200927522 /* Foundation.framework in Frameworks */,
+				862BE34915E2D2E200927522 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		862BE33515E2D2E200927522 = {
+			isa = PBXGroup;
+			children = (
+				862BE34A15E2D2E200927522 /* Drippp_v2 */,
+				862BE34315E2D2E200927522 /* Frameworks */,
+				862BE34115E2D2E200927522 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		862BE34115E2D2E200927522 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				862BE34015E2D2E200927522 /* Drippp_v2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		862BE34315E2D2E200927522 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				862BE34415E2D2E200927522 /* UIKit.framework */,
+				862BE34615E2D2E200927522 /* Foundation.framework */,
+				862BE34815E2D2E200927522 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		862BE34A15E2D2E200927522 /* Drippp_v2 */ = {
+			isa = PBXGroup;
+			children = (
+				862BE35315E2D2E200927522 /* DRPAppDelegate.h */,
+				862BE35415E2D2E200927522 /* DRPAppDelegate.m */,
+				862BE35615E2D2E200927522 /* MainStoryboard.storyboard */,
+				862BE35915E2D2E200927522 /* DRPViewController.h */,
+				862BE35A15E2D2E200927522 /* DRPViewController.m */,
+				862BE34B15E2D2E200927522 /* Supporting Files */,
+			);
+			path = Drippp_v2;
+			sourceTree = "<group>";
+		};
+		862BE34B15E2D2E200927522 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				862BE34C15E2D2E200927522 /* Drippp_v2-Info.plist */,
+				862BE34D15E2D2E200927522 /* InfoPlist.strings */,
+				862BE35015E2D2E200927522 /* main.m */,
+				862BE35215E2D2E200927522 /* Drippp_v2-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		862BE33F15E2D2E200927522 /* Drippp_v2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 862BE35E15E2D2E200927522 /* Build configuration list for PBXNativeTarget "Drippp_v2" */;
+			buildPhases = (
+				862BE33C15E2D2E200927522 /* Sources */,
+				862BE33D15E2D2E200927522 /* Frameworks */,
+				862BE33E15E2D2E200927522 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Drippp_v2;
+			productName = Drippp_v2;
+			productReference = 862BE34015E2D2E200927522 /* Drippp_v2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		862BE33715E2D2E200927522 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DRP;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = Amman;
+			};
+			buildConfigurationList = 862BE33A15E2D2E200927522 /* Build configuration list for PBXProject "Drippp_v2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 862BE33515E2D2E200927522;
+			productRefGroup = 862BE34115E2D2E200927522 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				862BE33F15E2D2E200927522 /* Drippp_v2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		862BE33E15E2D2E200927522 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				862BE34F15E2D2E200927522 /* InfoPlist.strings in Resources */,
+				862BE35815E2D2E200927522 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		862BE33C15E2D2E200927522 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				862BE35115E2D2E200927522 /* main.m in Sources */,
+				862BE35515E2D2E200927522 /* DRPAppDelegate.m in Sources */,
+				862BE35B15E2D2E200927522 /* DRPViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		862BE34D15E2D2E200927522 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				862BE34E15E2D2E200927522 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		862BE35615E2D2E200927522 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				862BE35715E2D2E200927522 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		862BE35C15E2D2E200927522 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		862BE35D15E2D2E200927522 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		862BE35F15E2D2E200927522 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Drippp_v2/Drippp_v2-Prefix.pch";
+				INFOPLIST_FILE = "Drippp_v2/Drippp_v2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		862BE36015E2D2E200927522 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Drippp_v2/Drippp_v2-Prefix.pch";
+				INFOPLIST_FILE = "Drippp_v2/Drippp_v2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		862BE33A15E2D2E200927522 /* Build configuration list for PBXProject "Drippp_v2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				862BE35C15E2D2E200927522 /* Debug */,
+				862BE35D15E2D2E200927522 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		862BE35E15E2D2E200927522 /* Build configuration list for PBXNativeTarget "Drippp_v2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				862BE35F15E2D2E200927522 /* Debug */,
+				862BE36015E2D2E200927522 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 862BE33715E2D2E200927522 /* Project object */;
+}
