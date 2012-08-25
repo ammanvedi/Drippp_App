@@ -29,7 +29,9 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"%@", [passedData valueForKeyPath:@"player.username"] );
+    NSLog(@"%@", @"from vC");
+    NSLog(@"%@", [passedData valueForKeyPath:@"player.id"] );
+    NSLog(@"%@", @"from vC");
     
 	// Do any additional setup after loading the view.
 }
