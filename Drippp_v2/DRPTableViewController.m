@@ -22,6 +22,12 @@
 @synthesize page;
 @synthesize passData;
 
+
+bool threaddone = false;
+int arraycount = 0;
+int lower = 30;
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -61,14 +67,14 @@
     self.urlsarray = [[NSMutableArray alloc]
                       initWithArray:shotsarray];
     
+    [NSThread detachNewThreadSelector:@selector(asyncloadimages) toTarget:self withObject:nil];
 
-    
-  //  [self.tableView setContentOffset:CGPointMake(0.0f, 300.0f) animated:YES];
-
-    
-
-     
+    while (threaddone ==false) {
+        
+    }
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -114,8 +120,11 @@
     
     cell.makeLabel.text =  [[[self.urlsarray objectAtIndex: [indexPath row]] objectForKey:@"player"] objectForKey:@"name"];
     
-    [cell.image_holder_main setImageWithURL:[NSURL URLWithString:[[self.urlsarray objectAtIndex:[indexPath row]] objectForKey:@"image_teaser_url"]]];
+   // [cell.image_holder_main setImageWithURL:[NSURL URLWithString:[[self.urlsarray objectAtIndex:[indexPath row]] objectForKey:@"image_teaser_url"]] placeholderImage:[UIImage imageNamed:@"ph.png"]];
+    
+    [cell.image_holder_main setImage:[images objectAtIndex:[indexPath row]]];
 
+    
     return cell;
 }
 
@@ -153,30 +162,27 @@
     
     NSArray *nextpagearray = [jsonfromnextpage objectForKey:@"shots"];
 
-    NSLog(@"%@", @"-------NPA------");
-    
-    NSLog(@"%@", nextpagearray);
-    
-    NSLog(@"%@", @"-------ENDNPA------");
-    
-    NSLog(@"%@", @"-------URLSARRAYB4------");
-    
-    NSLog(@"%@", nextpagearray);
-    
-    NSLog(@"%@", @"-------ENDURLSARRAYB4------");
-    
-
-    
     [self.urlsarray addObjectsFromArray: nextpagearray];
-    
-    NSLog(@"%@", @"-------URLSARRAYAFTER------");
-    
-    NSLog(@"%@", nextpagearray);
-    
-    NSLog(@"%@", @"-------ENDURLSARRAYAFTER------");
+
     
 
     NSLog(@"%@", [NSString stringWithFormat:@"%d", [self.urlsarray count]]);
+    
+    
+    for (int x=lower; x<=lower+29; x++) {
+        
+        NSLog(@"%@", @"called");
+        
+        NSData *imagedata = [NSData dataWithContentsOfURL: [NSURL URLWithString:[[self.urlsarray objectAtIndex:x] objectForKey:@"image_teaser_url"]]];
+        
+        UIImage *imagefromasync = [UIImage imageWithData:imagedata];
+        
+        [images insertObject:imagefromasync atIndex:x];
+        
+        NSLog(@"%u", [images count]);
+    }
+    
+    lower += 30;
     
     [self.tableView reloadData];
     
@@ -189,8 +195,7 @@
     
     [NSThread detachNewThreadSelector:@selector(get_next_page) toTarget:self withObject:nil];
     
-    
-    //[self get_next_page];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -209,7 +214,22 @@
     return indexPath;
 }
 
+-(void) asyncloadimages{
 
-
+    
+    for (int x=0; x<=29; x++) {
+        
+        NSData *imagedata = [NSData dataWithContentsOfURL: [NSURL URLWithString:[[self.urlsarray objectAtIndex:x] objectForKey:@"image_teaser_url"]]];
+        
+        UIImage *imagefromasync = [UIImage imageWithData:imagedata];
+        
+        [images insertObject:imagefromasync atIndex:x];
+        
+        NSLog(@"%u", [images count]);
+    }
+    
+    threaddone = true;
+    
+}
 
 @end

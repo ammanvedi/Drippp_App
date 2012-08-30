@@ -17,7 +17,10 @@
 @property (nonatomic, strong) NSObject *passData;
 
 
+
 -(void) get_next_page;
 - (IBAction)Clicked_More:(id)sender;
+-(void) asyncloadimages;
+
 
 @end

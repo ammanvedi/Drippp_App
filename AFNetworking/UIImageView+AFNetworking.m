@@ -92,6 +92,7 @@ static char kAFImageRequestOperationObjectKey;
     [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
     
     [self setImageWithURLRequest:request placeholderImage:placeholderImage success:nil failure:nil];
+    
 }
 
 - (void)setImageWithURLRequest:(NSURLRequest *)urlRequest 
@@ -108,6 +109,7 @@ static char kAFImageRequestOperationObjectKey;
         
         if (success) {
             success(nil, nil, cachedImage);
+            
         }
     } else {
         self.image = placeholderImage;
@@ -120,6 +122,7 @@ static char kAFImageRequestOperationObjectKey;
             }
 
             if (success) {
+                NSLog(@"%@", @"loaded1");
                 success(operation.request, operation.response, responseObject);
             }
 

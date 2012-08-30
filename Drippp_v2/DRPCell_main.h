@@ -11,6 +11,6 @@
 @interface DRPCell_main : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *makeLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *image_holder_main;
+@property (nonatomic, strong) IBOutlet UIImageView *image_holder_main;
 
 @end
