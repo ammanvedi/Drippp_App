@@ -9,16 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
 
-@interface DRPTableViewController : UITableViewController{
-    CMMotionManager *accell;
-}
-
+@interface DRPTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *urlsarray;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic) int page;
 @property (nonatomic, strong) NSObject *passData;
-@property (nonatomic, strong) CMMotionManager *accell;
 
 
 -(void) get_next_page;

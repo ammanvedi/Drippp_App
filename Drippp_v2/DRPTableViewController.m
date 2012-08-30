@@ -21,8 +21,6 @@
 @synthesize images;
 @synthesize page;
 @synthesize passData;
-@synthesize accell;
-
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,15 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    accell = [[CMMotionManager alloc] init];
-    
-    [accell startGyroUpdates];
-    accell.gyroUpdateInterval = 1/60;
-    
-    if (accell.gyroAvailable == YES) {
-        NSLog(@"%@", @"YES");
-    }
 
     self.page = 2;
     
@@ -74,7 +63,7 @@
     
 
     
-    [self.tableView setContentOffset:CGPointMake(0.0f, 300.0f) animated:YES];
+  //  [self.tableView setContentOffset:CGPointMake(0.0f, 300.0f) animated:YES];
 
     
 
@@ -111,7 +100,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    NSLog(@"%f", accell.gyroData.rotationRate.x);
+    
     
     static NSString *CellIdentifier = @"drippp_cell_main";
     DRPCell_main *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -219,7 +208,6 @@
     NSLog(@"select row");
     return indexPath;
 }
-
 
 
 
