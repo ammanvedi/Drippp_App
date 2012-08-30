@@ -10,10 +10,12 @@
 
 @interface DRPTableViewController : UITableViewController
 
+
 @property (nonatomic, strong) NSMutableArray *urlsarray;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic) int page;
 @property (nonatomic, strong) NSObject *passData;
+
 
 -(void) get_next_page;
 - (IBAction)Clicked_More:(id)sender;
