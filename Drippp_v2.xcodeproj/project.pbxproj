@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860864C315EF859F0002A168 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860864C215EF859F0002A168 /* CoreMotion.framework */; };
 		862BE34515E2D2E200927522 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34415E2D2E200927522 /* UIKit.framework */; };
 		862BE34715E2D2E200927522 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34615E2D2E200927522 /* Foundation.framework */; };
 		862BE34915E2D2E200927522 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34815E2D2E200927522 /* CoreGraphics.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		860864C215EF859F0002A168 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		862BE34015E2D2E200927522 /* Drippp_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drippp_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862BE34415E2D2E200927522 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		862BE34615E2D2E200927522 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				860864C315EF859F0002A168 /* CoreMotion.framework in Frameworks */,
 				862BE34515E2D2E200927522 /* UIKit.framework in Frameworks */,
 				862BE34715E2D2E200927522 /* Foundation.framework in Frameworks */,
 				862BE34915E2D2E200927522 /* CoreGraphics.framework in Frameworks */,
@@ -107,6 +110,7 @@
 		862BE34315E2D2E200927522 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				860864C215EF859F0002A168 /* CoreMotion.framework */,
 				862BE34415E2D2E200927522 /* UIKit.framework */,
 				862BE34615E2D2E200927522 /* Foundation.framework */,
 				862BE34815E2D2E200927522 /* CoreGraphics.framework */,

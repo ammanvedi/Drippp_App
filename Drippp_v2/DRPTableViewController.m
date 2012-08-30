@@ -21,6 +21,7 @@
 @synthesize images;
 @synthesize page;
 @synthesize passData;
+@synthesize accell;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,8 +37,15 @@
 {
     [super viewDidLoad];
     
-
+    accell = [[CMMotionManager alloc] init];
     
+    [accell startGyroUpdates];
+    accell.gyroUpdateInterval = 1/60;
+    
+    if (accell.gyroAvailable == YES) {
+        NSLog(@"%@", @"YES");
+    }
+
     self.page = 2;
     
     images = [[NSMutableArray alloc] init];
@@ -103,6 +111,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    NSLog(@"%f", accell.gyroData.rotationRate.x);
     
     static NSString *CellIdentifier = @"drippp_cell_main";
     DRPCell_main *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
