@@ -17,10 +17,13 @@
 
 @implementation DRPTableViewController
 
+@synthesize Refresh_Button;
+@synthesize nav_item;
 @synthesize urlsarray;
 @synthesize images;
 @synthesize page;
 @synthesize passData;
+@synthesize PRGView;
 
 
 bool threaddone = false;
@@ -40,6 +43,8 @@ int lower = 30;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
 
     self.page = 2;
     
@@ -78,6 +83,9 @@ int lower = 30;
 
 - (void)viewDidUnload
 {
+    
+    [self setRefresh_Button:nil];
+    [self setNav_item:nil];
     [super viewDidUnload];
 
 }
@@ -141,6 +149,8 @@ int lower = 30;
 }
 
 -(void) get_next_page{
+    
+
 
     NSLog(@"%@", @"Getting next page");
     
@@ -171,7 +181,6 @@ int lower = 30;
     
     for (int x=lower; x<=lower+29; x++) {
         
-        NSLog(@"%@", @"called");
         
         NSData *imagedata = [NSData dataWithContentsOfURL: [NSURL URLWithString:[[self.urlsarray objectAtIndex:x] objectForKey:@"image_teaser_url"]]];
         
@@ -180,7 +189,20 @@ int lower = 30;
         [images insertObject:imagefromasync atIndex:x];
         
         NSLog(@"%u", [images count]);
+                
+        [self performSelectorOnMainThread:@selector(updateprgview) withObject:nil waitUntilDone:NO];
+        
+        //[self updateprgview];
+        
+         NSLog(@"%f", (PRGView.progress +0.03));
+        
     }
+    
+    
+    nav_item.titleView = nil;
+    nav_item.title =@"drippp";
+    
+    [Refresh_Button setEnabled:true];
     
     lower += 30;
     
@@ -193,6 +215,15 @@ int lower = 30;
 
 - (IBAction)Clicked_More:(id)sender {
     
+    [Refresh_Button setEnabled:false];
+    
+    PRGView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    
+    [PRGView setProgress:0.0f];
+    
+    nav_item.titleView = PRGView;
+    
+    
     [NSThread detachNewThreadSelector:@selector(get_next_page) toTarget:self withObject:nil];
     
 
@@ -201,6 +232,7 @@ int lower = 30;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     DRPShotViewController *DRPSVC = [segue destinationViewController];
+
     
     if ([segue.identifier isEqualToString: @"MainTableSegue"]) {
         DRPSVC.passedData = passData;
@@ -230,6 +262,10 @@ int lower = 30;
     
     threaddone = true;
     
+}
+
+-(void)updateprgview{
+    [PRGView setProgress: (PRGView.progress + 0.03f) animated:YES];
 }
 
 @end
