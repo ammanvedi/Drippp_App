@@ -5,8 +5,17 @@
 //  Created by Amman on 20/08/2012.
 //  Copyright (c) 2012 Amman. All rights reserved.
 //
-//Provided via gitbub AS-IS open source
-//No warantee 
+
+
+/*
+ This code is annotated in most places, if any clarification is needed
+ contact me (Amman Vedi) via:
+ 
+ email  : amman.vedi@gmail.com
+ twitter: @ammanvedi
+ 
+*/
+
 
 #import "DRPTableViewController.h"
 #import "DRPCell_main.h"
