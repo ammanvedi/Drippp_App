@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
 
-@interface DRPTableViewController : UITableViewController
+@interface DRPTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Refresh_Button;
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav_item;
 
@@ -25,6 +25,7 @@
 - (IBAction)Clicked_More:(id)sender;
 -(void) asyncloadimages;
 -(void) updateprgview;
+-(void) display_color_picker;
 
 
 @end

@@ -21,6 +21,8 @@
 #import "DRPCell_main.h"
 #import "UIImageView+AFNetworking.h"
 #import "DRPShotViewController.h"
+#import "DRPColorPickerController.h"
+#import <MobileCoreServices/MobileCoreServices.h> 
 
 @interface DRPTableViewController ()
 
@@ -59,6 +61,11 @@ int lower = 30;
     //the value is used to pass the "page" parameter in the HTTP url request
     //incremented after page data has been gathered so its initial value must be 2
     self.page = 2;
+    
+    
+    UIBarButtonItem *cameraBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(display_color_picker)];
+    
+    [[self navigationItem] setLeftBarButtonItem:cameraBarButtonItem];
     
     
     //init arrays
@@ -313,6 +320,12 @@ int lower = 30;
     //set it to increase by 1/30
     //i.e. one thirt-eth increase for each of 30 images to download
     [PRGView setProgress: (PRGView.progress + 0.03f) animated:YES];
+}
+
+-(void) display_color_picker{
+
+    [self performSegueWithIdentifier:@"Color_picker_Segue" sender:nil];
+    
 }
 
 @end
