@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20.0f, 20.0f)];
+
     }
     return self;
 }

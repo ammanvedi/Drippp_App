@@ -19,8 +19,8 @@
 		862BE36615E2D6DA00927522 /* DRPCell_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 862BE36515E2D6DA00927522 /* DRPCell_main.m */; };
 		8671FD0015F5372300F38B30 /* DRPColorPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8671FCFF15F5372300F38B30 /* DRPColorPickerController.m */; };
 		8671FD0315F542B200F38B30 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8671FD0215F542B200F38B30 /* MobileCoreServices.framework */; };
-		8671FD0615F5570400F38B30 /* DRPCameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 8671FD0515F5570400F38B30 /* DRPCameraOverlay.m */; };
 		8671FD0915F5664300F38B30 /* UIImage+Pixels.m in Sources */ = {isa = PBXBuildFile; fileRef = 8671FD0715F5664300F38B30 /* UIImage+Pixels.m */; };
+		8671FD0C15F59B0E00F38B30 /* UIColor-Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 8671FD0B15F59B0E00F38B30 /* UIColor-Hex.m */; };
 		8681C5BF15EFCCE700507043 /* ph.png in Resources */ = {isa = PBXBuildFile; fileRef = 8681C5BD15EFCCE700507043 /* ph.png */; };
 		8681C5C015EFCCE700507043 /* ph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8681C5BE15EFCCE700507043 /* ph@2x.png */; };
 		86B8360E15E8426800BF44EB /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B835FA15E8426800BF44EB /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -57,10 +57,10 @@
 		8671FCFE15F5372300F38B30 /* DRPColorPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPColorPickerController.h; sourceTree = "<group>"; };
 		8671FCFF15F5372300F38B30 /* DRPColorPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPColorPickerController.m; sourceTree = "<group>"; };
 		8671FD0215F542B200F38B30 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		8671FD0415F5570400F38B30 /* DRPCameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPCameraOverlay.h; sourceTree = "<group>"; };
-		8671FD0515F5570400F38B30 /* DRPCameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPCameraOverlay.m; sourceTree = "<group>"; };
 		8671FD0715F5664300F38B30 /* UIImage+Pixels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Pixels.m"; path = "../../../../Desktop/UIImage+Pixels.m"; sourceTree = "<group>"; };
 		8671FD0815F5664300F38B30 /* UIImage+Pixels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Pixels.h"; path = "../../../../Desktop/UIImage+Pixels.h"; sourceTree = "<group>"; };
+		8671FD0A15F59B0D00F38B30 /* UIColor-Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor-Hex.h"; path = "../../../../Desktop/UIColor-Hex.h"; sourceTree = "<group>"; };
+		8671FD0B15F59B0E00F38B30 /* UIColor-Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor-Hex.m"; path = "../../../../Desktop/UIColor-Hex.m"; sourceTree = "<group>"; };
 		8681C5BD15EFCCE700507043 /* ph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ph.png; sourceTree = SOURCE_ROOT; };
 		8681C5BE15EFCCE700507043 /* ph@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ph@2x.png"; sourceTree = SOURCE_ROOT; };
 		86B835F915E8426800BF44EB /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -140,8 +140,8 @@
 			children = (
 				8671FCFE15F5372300F38B30 /* DRPColorPickerController.h */,
 				8671FCFF15F5372300F38B30 /* DRPColorPickerController.m */,
-				8671FD0415F5570400F38B30 /* DRPCameraOverlay.h */,
-				8671FD0515F5570400F38B30 /* DRPCameraOverlay.m */,
+				8671FD0A15F59B0D00F38B30 /* UIColor-Hex.h */,
+				8671FD0B15F59B0E00F38B30 /* UIColor-Hex.m */,
 				862BE35315E2D2E200927522 /* DRPAppDelegate.h */,
 				862BE35415E2D2E200927522 /* DRPAppDelegate.m */,
 				862BE36115E2D45600927522 /* DRPTableViewController.h */,
@@ -283,8 +283,8 @@
 				86B8361715E8426800BF44EB /* UIImageView+AFNetworking.m in Sources */,
 				86D93C4815E8FEAE0001548E /* DRPShotViewController.m in Sources */,
 				8671FD0015F5372300F38B30 /* DRPColorPickerController.m in Sources */,
-				8671FD0615F5570400F38B30 /* DRPCameraOverlay.m in Sources */,
 				8671FD0915F5664300F38B30 /* UIImage+Pixels.m in Sources */,
+				8671FD0C15F59B0E00F38B30 /* UIColor-Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
