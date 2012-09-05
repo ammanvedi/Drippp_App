@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DRPColorPickerController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface DRPColorPickerController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+    
+    NSString *url;
+}
 @property (nonatomic, strong) UIImagePickerController *Image_Picker;
 @property (nonatomic, strong) UIImage *capImage;
-
 @property (weak, nonatomic) IBOutlet UIButton *Camera_Button;
+@property (strong) NSMutableArray *idsarray;
 
 - (IBAction)Take_Pic:(id)sender;
 

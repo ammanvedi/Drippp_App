@@ -21,6 +21,10 @@
 @synthesize Image_Picker;
 @synthesize capImage;
 @synthesize Camera_Button;
+@synthesize idsarray;
+
+int variance = 50;
+int minimum = 35;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,6 +81,8 @@
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSLog(@"%@", @"taken");
     
+    idsarray = [[NSMutableArray alloc] init];
+    
     capImage = [[UIImage alloc] init];
     capImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
@@ -94,21 +100,41 @@
     
     NSString *hex_color = [[NSString alloc] init];
     hex_color = [NSString stringWithFormat:@"%X%X%X",pixelr,pixelg,pixelb];
-    NSLog(@"%@", hex_color);
-    
-    NSScanner *scanner = [NSScanner scannerWithString:hex_color];
-    unsigned hex;
-    [scanner scanHexInt:&hex];
-    
     
     UIColor *col = [[UIColor alloc] initWithHex:hex_color alpha:1.0f];
     
     [self.Camera_Button setBackgroundColor:col];
     [self.view setBackgroundColor:col];
+    //[self.Image_Picker dismissModalViewControllerAnimated:YES];
+    
+    NSString *url_string = [NSString stringWithFormat:@"http://dribbble.com/colors/%@?percent=%i&variance=%i",hex_color, minimum, variance];
+    
+    NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:url_string] encoding:NSStringEncodingConversionAllowLossy error:nil];
+    
+    NSLog(@"%@", html);
+    
+    NSLog(@"%@",url_string);
+    
+    NSScanner *scanner = [[NSScanner alloc] initWithString:html];
+     
+    
+    NSString *buffer;
+    NSString *idofshot;
+    
+    for (int parsecount = 0; parsecount <=14; parsecount++) {
 
+        [scanner scanUpToString:@"<li id=\"screenshot-" intoString:&buffer];
+        [scanner setScanLocation:scanner.scanLocation + 19];
+        [scanner scanUpToString:@"\"" intoString:&idofshot];
+        [idsarray addObject:idofshot];
+        NSLog(@"ID: %@", idofshot);
+        NSLog(@"Count:  %i", [idsarray count]);
+    }
+    
+
+    
     [self.Image_Picker dismissModalViewControllerAnimated:YES];
-
 }
-
+ 
 
 @end
