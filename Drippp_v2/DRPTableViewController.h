@@ -12,12 +12,12 @@
 @interface DRPTableViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Refresh_Button;
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav_item;
-
 @property (nonatomic, strong) NSMutableArray *urlsarray;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic) int page;
 @property (nonatomic, strong) NSObject *passData;
 @property (nonatomic, strong) UIProgressView *PRGView;
+
 
 
 

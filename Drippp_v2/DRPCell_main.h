@@ -12,5 +12,5 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *makeLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *image_holder_main;
-
+@property(nonatomic, strong) IBOutlet UIActivityIndicatorView *AIView;
 @end

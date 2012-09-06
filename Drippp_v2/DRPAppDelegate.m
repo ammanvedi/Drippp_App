@@ -7,12 +7,17 @@
 //
 
 #import "DRPAppDelegate.h"
+#import "UINavigationBar+JTDropShadow.h"
 
 @implementation DRPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nb.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] dropShadowWithOffset:CGSizeMake(0, 3) radius:3 color:[UIColor blackColor] opacity:1];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
+    [[UITableViewCell appearance] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"cell_bg.png"]]];
     return YES;
 }
 							
@@ -23,9 +28,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    NSLog(@"%@", @"deb");
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+{    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -41,7 +44,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    NSLog(@"%@", @"term");
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

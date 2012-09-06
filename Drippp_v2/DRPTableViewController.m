@@ -39,9 +39,11 @@
 @synthesize PRGView;
 
 
+
 bool threaddone = false;
 int arraycount = 0;
-int lower = 30;
+const int perpage = 5;
+int lower = perpage;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -61,12 +63,27 @@ int lower = 30;
     //the value is used to pass the "page" parameter in the HTTP url request
     //incremented after page data has been gathered so its initial value must be 2
     self.page = 2;
+    UIImage *leftbuttonimage = [UIImage imageNamed:@"camera.png"];
+    CGRect frameleftimage = CGRectMake(0, 0, leftbuttonimage.size.width, leftbuttonimage.size.width);
+    UIButton *leftbutton = [[UIButton alloc] initWithFrame:frameleftimage];
+    [leftbutton setBackgroundImage:leftbuttonimage forState:UIControlStateNormal];
+    [leftbutton addTarget:self action:@selector(display_color_picker) forControlEvents:UIControlEventTouchUpInside];
+    [leftbutton setShowsTouchWhenHighlighted:YES];
     
     
-    UIBarButtonItem *cameraBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(display_color_picker)];
+    UIBarButtonItem *cameraBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftbutton];
+
     
     [[self navigationItem] setLeftBarButtonItem:cameraBarButtonItem];
     
+    UIImage *rightbuttonimage = [UIImage imageNamed:@"refresh.png"];
+    CGRect framerightimage = CGRectMake(0, 0, rightbuttonimage.size.width, rightbuttonimage.size.width);
+    UIButton *rightbutton = [[UIButton alloc] initWithFrame:framerightimage];
+    [rightbutton setBackgroundImage:rightbuttonimage forState:UIControlStateNormal];
+    [rightbutton addTarget:self action:@selector(Clicked_More:) forControlEvents:UIControlEventTouchUpInside];
+    [rightbutton setShowsTouchWhenHighlighted:YES];
+    
+    [Refresh_Button setCustomView:rightbutton];
     
     //init arrays
     //images: holds the images from Teaser_Url from api Json Data
@@ -79,7 +96,8 @@ int lower = 30;
     
     NSError *jsonerror;
     //get data for first page
-    NSData *jsondataset = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://api.dribbble.com/shots/popular?per_page=30"]];
+    NSString *apistring = [[NSString alloc] initWithFormat:@"http://api.dribbble.com/shots/popular?per_page=%i", perpage];
+    NSData *jsondataset = [NSData dataWithContentsOfURL:[NSURL URLWithString:apistring]];
     //load a dictionary with response data
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsondataset options:kNilOptions error:&jsonerror];
     //the actual objects containing shot data and player data are stored in an array within
@@ -87,7 +105,9 @@ int lower = 30;
     NSArray *shotsarray = [json objectForKey:@"shots"];
     
     //for Debug
-    for (int n = 1; n <= 29; n = n + 1) {
+    
+    /*
+    for (int n = 1; n <= perpahe; n = n + 1) {
         NSLog(@"%@", [[[shotsarray objectAtIndex: n] objectForKey:@"player"] objectForKey:@"twitter_screen_name"]);
         NSLog(@"%@", [[shotsarray objectAtIndex: n] objectForKey:@"image_url"] );
         NSLog(@"%@", [[shotsarray objectAtIndex:n] objectForKey:@"image_teaser_url"]);
@@ -95,6 +115,8 @@ int lower = 30;
        
 
     }
+     
+     */
     
     //pass the array shotsarry to the global property urlsarray
     self.urlsarray = [[NSMutableArray alloc] initWithArray:shotsarray];
@@ -110,9 +132,9 @@ int lower = 30;
     //see what errors pop up
     //handle errors
     //call a reload of the tableview
-    while (threaddone ==false) {
+  //  while (threaddone ==false) {
         
-    }
+    //}
 }
 
 
@@ -158,23 +180,38 @@ int lower = 30;
     
     static NSString *CellIdentifier = @"drippp_cell_main";
     DRPCell_main *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    [cell.AIView startAnimating];
+    
+    if (threaddone == true) {
 
-    if (cell == nil) {
-        cell = [[DRPCell_main alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
+        if (cell.AIView.isAnimating) {
+            [cell.AIView stopAnimating];
+        }
+        
+        if (cell.AIView.hidden == NO) {
+            [cell.AIView setHidden:YES];
+        }
+        
+        if (cell == nil) {
+            cell = [[DRPCell_main alloc]
+                    initWithStyle:UITableViewCellStyleDefault
+                    reuseIdentifier:CellIdentifier];
+        }
+        
+        //care must be taken with what is placed in this method because
+        //1: this is on the main thread any heavy input will prevent the ui updating leading to unresponsive UI
+        //2. this method is invoked ALOT, almost everytime a cell is drawn
+        
+        //set the label to the name of the artist / player / creator
+        cell.makeLabel.text =  [[[self.urlsarray objectAtIndex: [indexPath row]] objectForKey:@"player"] objectForKey:@"name"];
+        //set image of the cell from the array.
+        //the array essentially acts as a cache,
+        //with the advantage that it doesnt get purged when the app enters background ect.
+        [cell.image_holder_main setImage:[images objectAtIndex:[indexPath row]]];
     }
     
-    //care must be taken with what is placed in this method because
-    //1: this is on the main thread any heavy input will prevent the ui updating leading to unresponsive UI
-    //2. this method is invoked ALOT, almost everytime a cell is drawn
 
-    //set the label to the name of the artist / player / creator
-    cell.makeLabel.text =  [[[self.urlsarray objectAtIndex: [indexPath row]] objectForKey:@"player"] objectForKey:@"name"];
-    //set image of the cell from the array.
-    //the array essentially acts as a cache,
-    //with the advantage that it doesnt get purged when the app enters background ect.
-    [cell.image_holder_main setImage:[images objectAtIndex:[indexPath row]]];
 
     
     return cell;
@@ -204,7 +241,7 @@ int lower = 30;
     NSString *urlstring;
     
     //url for json request with html param "page" from the variable "page"
-    urlstring = [NSString stringWithFormat:@"http://api.dribbble.com/shots/popular?per_page=30&page=%d", page];
+    urlstring = [NSString stringWithFormat:@"http://api.dribbble.com/shots/popular?per_page=%i&page=%d",perpage, page];
     //data object for json data
     NSData *jsondatasetfornextpage = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlstring]];
     //dictionary for data
@@ -219,7 +256,7 @@ int lower = 30;
     //this loop will download the image data for the next page of images
     //add it to the end of the image array
     //call an update to the progressview
-    for (int x=lower; x<=lower+29; x++) {
+    for (int x=lower; x<=lower+(perpage - 1); x++) {
         
         
         NSData *imagedata = [NSData dataWithContentsOfURL: [NSURL URLWithString:[[self.urlsarray objectAtIndex:x] objectForKey:@"image_teaser_url"]]];
@@ -234,20 +271,20 @@ int lower = 30;
         //solving the problem of UI updates not being allwed to happen anywhere except in the main thread 
         [self performSelectorOnMainThread:@selector(updateprgview) withObject:nil waitUntilDone:NO];
         //For Debug
-        NSLog(@"%f", (PRGView.progress +0.03));
+        NSLog(@"%f", (PRGView.progress + (1/perpage)));
         
     }
     
     //setnil and reassign the title when the progressview has finished
     //which by this point it will have as the loop has ended
     nav_item.titleView = nil;
-    nav_item.title =@"drippp";
+
     
     //re enable the button
     [Refresh_Button setEnabled:true];
     
     //incerement the lower value
-    lower += 30;
+    lower += perpage;
     
     //call a reload of the tableview 
     [self.tableView reloadData];
@@ -299,7 +336,7 @@ int lower = 30;
 -(void) asyncloadimages{
     //method that is called to download the initial data
     
-    for (int x=0; x<=29; x++) {
+    for (int x=0; x<= (perpage - 1); x++) {
         //create data object
         NSData *imagedata = [NSData dataWithContentsOfURL: [NSURL URLWithString:[[self.urlsarray objectAtIndex:x] objectForKey:@"image_teaser_url"]]];
         //create image
@@ -311,15 +348,26 @@ int lower = 30;
     }
     
     //indicate that the thread has terminated/finished
+    [self.tableView reloadData];
+    
     threaddone = true;
     
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cell_bg.png"]];
 }
 
 -(void)updateprgview{
     //Method to update the ProgressView
     //set it to increase by 1/30
     //i.e. one thirt-eth increase for each of 30 images to download
-    [PRGView setProgress: (PRGView.progress + 0.03f) animated:YES];
+    
+    float incr = PRGView.progress + (1.0f/(float)perpage);
+    NSLog(@"incr: %f", incr);
+    [PRGView setProgress:incr animated:YES];
 }
 
 -(void) display_color_picker{

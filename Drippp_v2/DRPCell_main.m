@@ -12,12 +12,14 @@
 
 @synthesize makeLabel = _makeLabel;
 @synthesize image_holder_main = _image_holder_main;
+@synthesize AIView = _AIView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         //custom init
+        
     }
     return self;
 }
