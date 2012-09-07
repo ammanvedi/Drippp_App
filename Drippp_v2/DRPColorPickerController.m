@@ -26,10 +26,10 @@
 @end
 
 @implementation DRPColorPickerController
+@synthesize ColorView;
 
 @synthesize Image_Picker;
 @synthesize capImage;
-@synthesize subimgview;
 @synthesize Camera_Button;
 @synthesize idsarray;
 @synthesize Camera_Image_View;
@@ -68,7 +68,7 @@ int count = 0;
 {
     [self setCamera_Button:nil];
     [self setCamera_Image_View:nil];
-    [self setSubimgview:nil];
+    [self setColorView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     [self setCapImage:nil];
@@ -82,7 +82,6 @@ int count = 0;
     [super viewDidUnload];
     [self setCamera_Button:nil];
     [self setCamera_Image_View:nil];
-    [self setSubimgview:nil];
     [self setCapImage:nil];
     [self.captureSession stopRunning];
     [self setCaptureSession:nil];
@@ -131,6 +130,7 @@ int count = 0;
     
     AVCPL = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
     AVCPL.frame = self.Camera_Image_View.bounds;
+    AVCPL.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.Camera_Image_View.layer addSublayer:AVCPL];
     
     
@@ -156,7 +156,7 @@ int count = 0;
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         customPreviewLayer.contents = (__bridge id)dstImage;
-        [self.Camera_Image_View setBackgroundColor:[[self getRGBAsFromImage:dstImage atX:50 andY:50 count:1] objectAtIndex:0]];
+        [self.ColorView setBackgroundColor:[[self getRGBAsFromImage:dstImage atX:50 andY:50 count:1] objectAtIndex:0]];
     });
 
     CGImageRelease(dstImage);

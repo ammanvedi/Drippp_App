@@ -20,7 +20,6 @@
 }
 @property (nonatomic, strong) UIImagePickerController *Image_Picker;
 @property (nonatomic, strong) UIImage *capImage;
-@property (weak, nonatomic) IBOutlet UIImageView *subimgview;
 @property (weak, nonatomic) IBOutlet UIButton *Camera_Button;
 @property (strong) NSMutableArray *idsarray;
 @property (weak, nonatomic) IBOutlet UIImageView *Camera_Image_View;
@@ -28,6 +27,7 @@
 @property (nonatomic, strong) AVCaptureVideoDataOutput *videoDataOutput;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 
+@property (weak, nonatomic) IBOutlet UIImageView *ColorView;
 
 - (IBAction)Take_Pic:(id)sender;
 - (NSArray*)getRGBAsFromImage:(CGImageRef)image atX:(int)xx andY:(int)yy count:(int)count;

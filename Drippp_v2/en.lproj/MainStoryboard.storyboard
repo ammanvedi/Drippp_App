@@ -82,12 +82,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="z7E-hD-224">
-                                <rect key="frame" x="0.0" y="9" width="320" height="363"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.51301375911564295" blue="0.29207190331033994" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CAr-JO-msp">
-                                <rect key="frame" x="124" y="335" width="72" height="37"/>
+                                <rect key="frame" x="20" y="284" width="280" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.72632739593653861" green="1" blue="0.7793904126817699" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -102,8 +101,8 @@
                                     <action selector="Take_Pic:" destination="c1s-In-qYE" eventType="touchUpInside" id="xVs-kn-scF"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Pa1-OC-yRC">
-                                <rect key="frame" x="0.0" y="100" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="CWR-TM-8ct">
+                                <rect key="frame" x="20" y="329" width="280" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -113,7 +112,7 @@
                     <connections>
                         <outlet property="Camera_Button" destination="CAr-JO-msp" id="Xbf-aX-BhT"/>
                         <outlet property="Camera_Image_View" destination="z7E-hD-224" id="sbD-g3-78M"/>
-                        <outlet property="subimgview" destination="Pa1-OC-yRC" id="oIw-wO-GtL"/>
+                        <outlet property="ColorView" destination="CWR-TM-8ct" id="z5U-g3-oo0"/>
                     </connections>
                 </viewController>
             </objects>
@@ -168,7 +167,7 @@
                 <relationship kind="action" name="Take_Pic:"/>
                 <relationship kind="outlet" name="Camera_Button" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="Camera_Image_View" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="subimgview" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="ColorView" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="DRPShotViewController" superclassName="UIViewController">
@@ -178,7 +177,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DRPTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="Clicked_More:"/>
-                <relationship kind="outlet" name="Cell_AC" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="Refresh_Button" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="nav_item" candidateClass="UINavigationItem"/>
             </relationships>
