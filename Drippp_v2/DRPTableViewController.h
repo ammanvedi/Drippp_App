@@ -17,6 +17,7 @@
 @property (nonatomic) int page;
 @property (nonatomic, strong) NSObject *passData;
 @property (nonatomic, strong) UIProgressView *PRGView;
+@property (strong) const NSString *api_category;
 
 
 

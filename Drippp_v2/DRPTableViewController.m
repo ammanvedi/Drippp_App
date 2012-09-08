@@ -37,6 +37,7 @@
 @synthesize page;
 @synthesize passData;
 @synthesize PRGView;
+@synthesize api_category;
 
 
 
@@ -58,6 +59,8 @@ int lower = perpage;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    api_category = @"everyone";
     
     //the variable "page" will increment each time a new page of the api data is loaded
     //the value is used to pass the "page" parameter in the HTTP url request
@@ -96,7 +99,7 @@ int lower = perpage;
     
     NSError *jsonerror;
     //get data for first page
-    NSString *apistring = [[NSString alloc] initWithFormat:@"http://api.dribbble.com/shots/popular?per_page=%i", perpage];
+    NSString *apistring = [[NSString alloc] initWithFormat:@"http://api.dribbble.com/shots/%@?per_page=%i", api_category ,perpage];
     NSData *jsondataset = [NSData dataWithContentsOfURL:[NSURL URLWithString:apistring]];
     //load a dictionary with response data
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsondataset options:kNilOptions error:&jsonerror];
@@ -124,17 +127,6 @@ int lower = perpage;
     //asyncloadimages is the method that is called to get the initial page/JSON data set
     [NSThread detachNewThreadSelector:@selector(asyncloadimages) toTarget:self withObject:nil];
 
-    
-    //this hangs so there are no errors
-    //basically waits for the array to be loaded
-    
-    //TO-DO remove this
-    //see what errors pop up
-    //handle errors
-    //call a reload of the tableview
-  //  while (threaddone ==false) {
-        
-    //}
 }
 
 
@@ -184,6 +176,8 @@ int lower = perpage;
     [cell.AIView startAnimating];
     
     if (threaddone == true) {
+        
+        [cell.makeLabel setHidden:NO];
 
         if (cell.AIView.isAnimating) {
             [cell.AIView stopAnimating];
@@ -209,6 +203,10 @@ int lower = perpage;
         //the array essentially acts as a cache,
         //with the advantage that it doesnt get purged when the app enters background ect.
         [cell.image_holder_main setImage:[images objectAtIndex:[indexPath row]]];
+    }else{
+        
+        [cell.makeLabel setHidden:YES];
+        
     }
     
 
@@ -241,7 +239,7 @@ int lower = perpage;
     NSString *urlstring;
     
     //url for json request with html param "page" from the variable "page"
-    urlstring = [NSString stringWithFormat:@"http://api.dribbble.com/shots/popular?per_page=%i&page=%d",perpage, page];
+    urlstring = [NSString stringWithFormat:@"http://api.dribbble.com/shots/%@?per_page=%i&page=%d", api_category ,perpage, page];
     //data object for json data
     NSData *jsondatasetfornextpage = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlstring]];
     //dictionary for data
