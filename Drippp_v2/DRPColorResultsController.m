@@ -49,7 +49,17 @@ bool have_images = false;
 
 -(void) viewWillDisappear:(BOOL)animated{
     
+    [self setColorimagesarray:nil];
+    [self setColorshotsarray:nil];
+    have_images = false;
 
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.main_table_view reloadData];
+    NSLog(@"%i", have_images);
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -162,7 +172,7 @@ bool have_images = false;
     //create a obect to enable referral to the destinationviewcontroller (DVC)
     DRPShotViewController *DRPSVC = [segue destinationViewController];
     //determine which segue has been called
-    if ([segue.identifier isEqualToString: @"color result to view shotlink"]) {
+    if ([segue.identifier isEqualToString: @"color result to view shot"]) {
         //assign property of DVC to nsdata object
         //allows all data about a shot to be passed in one package at one time
         DRPSVC.passedData = colorpassData;
