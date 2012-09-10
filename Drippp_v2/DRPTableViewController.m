@@ -60,7 +60,9 @@ int lower = perpage;
 {
     [super viewDidLoad];
     
-    api_category = @"everyone";
+    
+    
+    api_category = @"popular";
     
     //the variable "page" will increment each time a new page of the api data is loaded
     //the value is used to pass the "page" parameter in the HTTP url request

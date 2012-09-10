@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *Camera_Button;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Camera_load_AI;
 @property (strong) NSMutableArray *idsarray;
-@property (weak, nonatomic) IBOutlet UIImageView *Camera_Image_View;
+@property (strong, nonatomic) IBOutlet UIImageView *Camera_Image_View;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, retain) AVCaptureDeviceInput *deviceInput;
 @property (nonatomic, retain) AVCaptureVideoDataOutput *dataOutput;

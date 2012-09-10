@@ -16,6 +16,7 @@
 #import <CoreVideo/CoreVideo.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <Accelerate/Accelerate.h>
+#import "DRPColorResultsController.h"
 
 
 @interface DRPColorPickerController ()
@@ -46,6 +47,8 @@ int minimum = 35;
 
 int count = 0;
 
+bool back_from_pick = false;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -60,7 +63,7 @@ int count = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    NSLog(@"%@", @"did load");
     idsarray = [[NSMutableArray alloc] init];
     [self.pick_button setEnabled:NO];
     [Camera_load_AI setHidden:YES];
@@ -68,8 +71,33 @@ int count = 0;
 
 -(void)viewWillAppear:(BOOL)animated{
     NSLog(@"%@", @"will appear");
+
     
+    if (back_from_pick == false) {
+         NSLog(@"%@", @"null atm");
+        
+        [super viewWillAppear:YES];
+        idsarray = [[NSMutableArray alloc] init];
+        [self.pick_button setEnabled:NO];
+        [Camera_load_AI setHidden:YES];
+        
+    }else{
+        NSLog(@"%@", @"is live");
+        
+        [self.pick_button setEnabled:YES];
+        [self.Camera_Button setEnabled:NO];
+        
+        //[captureSession removeOutput:dataOutput];
+        //[captureSession removeInput:deviceInput];
+        //[self.captureSession stopRunning];
+        
+        [captureSession addInput:deviceInput];
+        [captureSession addOutput:dataOutput];
+        [self.captureSession startRunning];
+        back_from_pick = false;
+    }
     
+
 }
 
 - (void)viewDidUnload
@@ -91,18 +119,28 @@ int count = 0;
 -(void)viewWillDisappear:(BOOL)animated{
     
    // [self getidsforcolor:hex_string];
+    
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        // back button was pressed.  We know this is true because self is no longer
+        // in the navigation stack.
+        
+        NSLog(@"%@", @"back to main screen");
+        
+        [captureSession removeOutput:dataOutput];
+        [captureSession removeInput:deviceInput];
+        [self.captureSession stopRunning];
+        [self setDataOutput:nil];
+        [self setDeviceInput:nil];
+        [self setCamera_Button:nil];
+        [self setCamera_Image_View:nil];
+        [self setCapImage:nil];
+        [self setCaptureSession:nil];
+        [super viewWillDisappear:YES];
+    }
 
-    NSLog(@"%@", @"didunload");
-    [captureSession removeOutput:dataOutput];
-    [captureSession removeInput:deviceInput];
-    [self setDataOutput:nil];
-    [self setDeviceInput:nil];
-    [self setCamera_Button:nil];
-    [self setCamera_Image_View:nil];
-    [self setCapImage:nil];
-    [self.captureSession stopRunning];
-    [self setCaptureSession:nil];
-    [super viewWillDisappear:YES];
+
+    NSLog(@"%@", @"will dissapear");
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -113,6 +151,13 @@ int count = 0;
 - (IBAction)click_pick:(id)sender {
     
     [NSThread detachNewThreadSelector:@selector(getidsforcolor:) toTarget:self withObject:hex_string];
+    [self.Camera_Button setEnabled:YES];
+    
+    [captureSession removeOutput:dataOutput];
+    [captureSession removeInput:deviceInput];
+    [self.captureSession stopRunning];
+    
+    back_from_pick = true;
     
 }
 
@@ -158,15 +203,16 @@ int count = 0;
     customPreviewLayer.bounds = CGRectMake(0, 0, self.Camera_Image_View.frame.size.height, self.Camera_Image_View.frame.size.width);
     customPreviewLayer.position = CGPointMake(self.view.frame.size.width/2., self.view.frame.size.height/2.);
     customPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI/2);
+    [customPreviewLayer setNeedsDisplay];
     
     AVCPL = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
     AVCPL.frame = self.Camera_Image_View.bounds;
     AVCPL.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    [AVCPL setNeedsDisplay];
     [self.Camera_Image_View.layer addSublayer:AVCPL];
     
     CALayer *TargetLayer = [[CALayer alloc] init];
     TargetLayer.frame = CGRectMake(self.Camera_Image_View.frame.size.width/2 - 30, self.Camera_Image_View.frame.size.height/2 - 30, 60, 60);
-    //[TargetLayer setBackgroundColor:[UIColor greenColor].CGColor];
     TargetLayer.contents = (id) [UIImage imageNamed:@"target.png"].CGImage;
     [TargetLayer setOpacity:0.5];
     [self.Camera_Image_View.layer addSublayer:TargetLayer];
@@ -181,7 +227,6 @@ int count = 0;
     
     img = [UIImage imageWithCGImage:(__bridge CGImageRef)(customPreviewLayer.contents)];
     
-    NSLog(@"%@", @"did load");
     [self.pick_button setEnabled:YES];
     
     [Camera_load_AI stopAnimating];
@@ -197,13 +242,12 @@ int count = 0;
 
     
     CGImageRef dstImage = [self imageFromSampleBuffer:sampleBuffer];
-    UIImage *imageSB = [UIImage imageWithCGImage:dstImage];
     
-    NSLog(@"%f %f",imageSB.size.width, imageSB.size.height);
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         
         customPreviewLayer.contents = (__bridge id)dstImage;
+        [customPreviewLayer setNeedsDisplay];
         [self.ColorView setBackgroundColor:[[self getRGBAsFromImage:dstImage atX:96 andY:72 count:1] objectAtIndex:0]];
         
         CGFloat r;
@@ -217,17 +261,33 @@ int count = 0;
        g =  g*255;
        b =  b*255;
         
+        NSString *hexr = [[NSString alloc] initWithFormat:@"%X", (int) r];
+        NSString *hexg = [[NSString alloc] initWithFormat:@"%X", (int) g];
+        NSString *hexb = [[NSString alloc] initWithFormat:@"%X", (int) b];
+        
+        if ([hexr length] <2) {
+            hexr = [NSString stringWithFormat:@"%@0", hexr];
+
+        }
+        if ([hexg length] <2) {
+            hexg = [NSString stringWithFormat:@"%@0", hexg];
+
+        }
+        if ([hexb length] <2) {
+            hexb = [NSString stringWithFormat:@"%@0", hexb];
+
+        }
+        
         [self.RGBLabel setText:[NSString stringWithFormat:@"R: %i G: %i B: %i",(int) r, (int) g, (int) b]];
         
+        [self.HexLabel setText:[NSString stringWithFormat:@"#%@%@%@",hexr, hexg, hexb]];
         
-        self.hex_only = [self htmlFromUIColor:[[self getRGBAsFromImage:dstImage atX:50 andY:50 count:1] objectAtIndex:0]];
+        self.hex_only = [NSString stringWithFormat:@"%@%@%@",hexr, hexg, hexb];
+        
+
         
         self.hex_string = [NSString stringWithFormat:@"http://dribbble.com/colors/%@?percent=%i&variance=%i", hex_only, minimum, variance];
-        
-        [self.HexLabel setText:[NSString stringWithFormat:@"#%@",hex_only]];
-        
-        NSLog(@"%@", hex_string);
-        
+                
     });
 
     CGImageRelease(dstImage);
@@ -267,7 +327,7 @@ int count = 0;
         CGFloat blue  = (rawData[byteIndex + 2] * 1.0) ;
         CGFloat alpha = (rawData[byteIndex + 3] * 1.0) ;
         
-        NSLog(@"R: %f G: %f B: %f A: %f", red, green, blue, alpha);
+        //NSLog(@"R: %f G: %f B: %f A: %f", red, green, blue, alpha);
         byteIndex += 4;
         
         UIColor *acolor = [UIColor colorWithRed:red /255.0f green:green /255.0f blue:blue /255.0f alpha:alpha];
@@ -301,7 +361,7 @@ int count = 0;
 }
 
 - (NSString *) htmlFromUIColor:(UIColor *)_color {
-    if (CGColorGetNumberOfComponents(_color.CGColor) < 4) {
+    if (CGColorGetNumberOfComponents(_color.CGColor) == 4) {
         const CGFloat *components = CGColorGetComponents(_color.CGColor);
         _color = [UIColor colorWithRed:components[0] green:components[0] blue:components[0] alpha:components[1]];
     }
@@ -319,29 +379,19 @@ int count = 0;
     
     [self.captureSession removeOutput:dataOutput];
     
-    NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:apiurl] encoding:NSStringEncodingConversionAllowLossy error:nil];
+
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    DRPColorResultsController *CRC = [segue destinationViewController];
+
+if ([segue.identifier isEqualToString: @"Picker to results"]) {
     
-    NSLog(@"%@", html);
-    
-    NSLog(@"%@",apiurl);
-    
-    NSScanner *scanner = [[NSScanner alloc] initWithString:html];
-    
-    
-    NSString *buffer;
-    NSString *idofshot;
-    
-    for (int parsecount = 0; parsecount <=10; parsecount++) {
-        
-        [scanner scanUpToString:@"<li id=\"screenshot-" intoString:&buffer];
-        [scanner setScanLocation:scanner.scanLocation + 19];
-        [scanner scanUpToString:@"\"" intoString:&idofshot];
-        [idsarray addObject:idofshot];
-        NSLog(@"ID: %@", idofshot);
-        NSLog(@"Count:  %i", [idsarray count]);
-    }
-    
-    [self setIdsarray:nil];
+    CRC.passed_url = hex_string;
+}
+
+   
 }
 
 

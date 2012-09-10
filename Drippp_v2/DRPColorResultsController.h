@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DRPColorResultsTableView.h"
 
-@interface DRPColorResultsController : UIViewController
+@interface DRPColorResultsController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    NSMutableArray *passed_ids;
+    NSString *passed_url;
+}
+
+@property (weak, nonatomic) IBOutlet DRPColorResultsTableView *main_table_view;
+@property (nonatomic, strong) NSMutableArray *passed_ids;
+@property (nonatomic, strong) NSMutableArray *results_images;
+@property (nonatomic, strong) NSString *passed_url;
+@property (nonatomic, strong) NSMutableArray *colorshotsarray ;
+@property (nonatomic, strong) NSMutableArray *colorimagesarray ;
+@property (nonatomic, strong) NSObject *colorpassData;
+
 
 @end

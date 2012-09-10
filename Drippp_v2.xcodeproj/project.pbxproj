@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		860864C315EF859F0002A168 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860864C215EF859F0002A168 /* CoreMotion.framework */; };
+		8608DC9615FD34E9000E625B /* DRPColorResultsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8608DC9515FD34E9000E625B /* DRPColorResultsTableView.m */; };
+		8608DC9A15FD350E000E625B /* DRPColorResultsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8608DC9915FD350E000E625B /* DRPColorResultsCell.m */; };
 		860A404015F76E0200D3E591 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860A403F15F76E0200D3E591 /* CoreVideo.framework */; };
 		860A404315F76E0A00D3E591 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860A404215F76E0A00D3E591 /* CoreMedia.framework */; };
 		860A404515F76E1100D3E591 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860A404415F76E1100D3E591 /* AVFoundation.framework */; };
@@ -50,7 +52,6 @@
 		86B8361515E8426800BF44EB /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B8360915E8426800BF44EB /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86B8361615E8426800BF44EB /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B8360B15E8426800BF44EB /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86B8361715E8426800BF44EB /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B8360D15E8426800BF44EB /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		86C0373F15E43FC40081FC50 /* dribble_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 86C0373E15E43FC40081FC50 /* dribble_response.json */; };
 		86D93C4815E8FEAE0001548E /* DRPShotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D93C4715E8FEAE0001548E /* DRPShotViewController.m */; };
 		86E4F19C15FB9C8500CDEB9E /* begin.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E4F19A15FB9C8500CDEB9E /* begin.png */; };
 		86E4F19D15FB9C8500CDEB9E /* begin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E4F19B15FB9C8500CDEB9E /* begin@2x.png */; };
@@ -65,6 +66,10 @@
 
 /* Begin PBXFileReference section */
 		860864C215EF859F0002A168 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		8608DC9415FD34E9000E625B /* DRPColorResultsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPColorResultsTableView.h; sourceTree = "<group>"; };
+		8608DC9515FD34E9000E625B /* DRPColorResultsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPColorResultsTableView.m; sourceTree = "<group>"; };
+		8608DC9815FD350E000E625B /* DRPColorResultsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPColorResultsCell.h; sourceTree = "<group>"; };
+		8608DC9915FD350E000E625B /* DRPColorResultsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPColorResultsCell.m; sourceTree = "<group>"; };
 		860A403F15F76E0200D3E591 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		860A404215F76E0A00D3E591 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		860A404415F76E1100D3E591 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -128,7 +133,6 @@
 		86B8360B15E8426800BF44EB /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		86B8360C15E8426800BF44EB /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		86B8360D15E8426800BF44EB /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		86C0373E15E43FC40081FC50 /* dribble_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dribble_response.json; sourceTree = "<group>"; };
 		86D93C4615E8FEAE0001548E /* DRPShotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPShotViewController.h; sourceTree = "<group>"; };
 		86D93C4715E8FEAE0001548E /* DRPShotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPShotViewController.m; sourceTree = "<group>"; };
 		86E4F19A15FB9C8500CDEB9E /* begin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = begin.png; sourceTree = "<group>"; };
@@ -209,24 +213,27 @@
 		862BE34A15E2D2E200927522 /* Drippp_v2 */ = {
 			isa = PBXGroup;
 			children = (
-				8671FCFE15F5372300F38B30 /* DRPColorPickerController.h */,
-				8671FCFF15F5372300F38B30 /* DRPColorPickerController.m */,
-				8671FD0B15F59B0E00F38B30 /* UIColor-Hex.m */,
-				8671FD0A15F59B0D00F38B30 /* UIColor-Hex.h */,
 				862BE35315E2D2E200927522 /* DRPAppDelegate.h */,
 				862BE35415E2D2E200927522 /* DRPAppDelegate.m */,
+				8671FD0B15F59B0E00F38B30 /* UIColor-Hex.m */,
+				8671FD0A15F59B0D00F38B30 /* UIColor-Hex.h */,
 				862BE36115E2D45600927522 /* DRPTableViewController.h */,
 				862BE36215E2D45600927522 /* DRPTableViewController.m */,
-				86C0373E15E43FC40081FC50 /* dribble_response.json */,
-				862BE35615E2D2E200927522 /* MainStoryboard.storyboard */,
-				86F8112115FBC53600DF0692 /* DRPColorResultsController.h */,
-				86F8112215FBC53600DF0692 /* DRPColorResultsController.m */,
-				86D93C4615E8FEAE0001548E /* DRPShotViewController.h */,
-				86D93C4715E8FEAE0001548E /* DRPShotViewController.m */,
 				862BE36415E2D6DA00927522 /* DRPCell_main.h */,
 				862BE36515E2D6DA00927522 /* DRPCell_main.m */,
+				8671FCFE15F5372300F38B30 /* DRPColorPickerController.h */,
+				8671FCFF15F5372300F38B30 /* DRPColorPickerController.m */,
+				86F8112115FBC53600DF0692 /* DRPColorResultsController.h */,
+				86F8112215FBC53600DF0692 /* DRPColorResultsController.m */,
+				8608DC9415FD34E9000E625B /* DRPColorResultsTableView.h */,
+				8608DC9515FD34E9000E625B /* DRPColorResultsTableView.m */,
+				8608DC9815FD350E000E625B /* DRPColorResultsCell.h */,
+				8608DC9915FD350E000E625B /* DRPColorResultsCell.m */,
+				86D93C4615E8FEAE0001548E /* DRPShotViewController.h */,
+				86D93C4715E8FEAE0001548E /* DRPShotViewController.m */,
 				8671FD0715F5664300F38B30 /* UIImage+Pixels.m */,
 				8671FD0815F5664300F38B30 /* UIImage+Pixels.h */,
+				862BE35615E2D2E200927522 /* MainStoryboard.storyboard */,
 				862BE34B15E2D2E200927522 /* Supporting Files */,
 				86309DCC15F91DAA00C729D6 /* UINavigationBar+JTDropShadow.h */,
 				86309DCD15F91DAA00C729D6 /* UINavigationBar+JTDropShadow.m */,
@@ -237,8 +244,6 @@
 		862BE34B15E2D2E200927522 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8681C5BD15EFCCE700507043 /* ph.png */,
-				8681C5BE15EFCCE700507043 /* ph@2x.png */,
 				862BE34C15E2D2E200927522 /* Drippp_v2-Info.plist */,
 				862BE34D15E2D2E200927522 /* InfoPlist.strings */,
 				862BE35015E2D2E200927522 /* main.m */,
@@ -250,6 +255,8 @@
 		86309DBD15F8FC0200C729D6 /* ui_Elements */ = {
 			isa = PBXGroup;
 			children = (
+				8681C5BD15EFCCE700507043 /* ph.png */,
+				8681C5BE15EFCCE700507043 /* ph@2x.png */,
 				86F8111D15FBBFE300DF0692 /* target.png */,
 				86F8111E15FBBFE300DF0692 /* target@2x.png */,
 				86F8111815FBA00600DF0692 /* pick.png */,
@@ -353,7 +360,6 @@
 			files = (
 				862BE34F15E2D2E200927522 /* InfoPlist.strings in Resources */,
 				862BE35815E2D2E200927522 /* MainStoryboard.storyboard in Resources */,
-				86C0373F15E43FC40081FC50 /* dribble_response.json in Resources */,
 				8681C5BF15EFCCE700507043 /* ph.png in Resources */,
 				8681C5C015EFCCE700507043 /* ph@2x.png in Resources */,
 				86309DC215F9013800C729D6 /* camera.png in Resources */,
@@ -402,6 +408,8 @@
 				8671FD0C15F59B0E00F38B30 /* UIColor-Hex.m in Sources */,
 				86309DCE15F91DAA00C729D6 /* UINavigationBar+JTDropShadow.m in Sources */,
 				86F8112315FBC53600DF0692 /* DRPColorResultsController.m in Sources */,
+				8608DC9615FD34E9000E625B /* DRPColorResultsTableView.m in Sources */,
+				8608DC9A15FD350E000E625B /* DRPColorResultsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
