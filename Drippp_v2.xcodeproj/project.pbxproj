@@ -17,6 +17,7 @@
 		860A404915F76E1F00D3E591 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860A404815F76E1F00D3E591 /* QuartzCore.framework */; };
 		860A404E15F7AEA300D3E591 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860A404D15F7AEA300D3E591 /* CoreImage.framework */; };
 		860A405015F7E12A00D3E591 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860A404F15F7E12A00D3E591 /* OpenGLES.framework */; };
+		8614422715FE45CF00A83132 /* DRPCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8614422615FE45CF00A83132 /* DRPCommentsCell.m */; };
 		862BE34515E2D2E200927522 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34415E2D2E200927522 /* UIKit.framework */; };
 		862BE34715E2D2E200927522 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34615E2D2E200927522 /* Foundation.framework */; };
 		862BE34915E2D2E200927522 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862BE34815E2D2E200927522 /* CoreGraphics.framework */; };
@@ -77,6 +78,8 @@
 		860A404815F76E1F00D3E591 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		860A404D15F7AEA300D3E591 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		860A404F15F7E12A00D3E591 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		8614422515FE45CF00A83132 /* DRPCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPCommentsCell.h; sourceTree = "<group>"; };
+		8614422615FE45CF00A83132 /* DRPCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPCommentsCell.m; sourceTree = "<group>"; };
 		862BE34015E2D2E200927522 /* Drippp_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drippp_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862BE34415E2D2E200927522 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		862BE34615E2D2E200927522 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -231,6 +234,8 @@
 				8608DC9915FD350E000E625B /* DRPColorResultsCell.m */,
 				86D93C4615E8FEAE0001548E /* DRPShotViewController.h */,
 				86D93C4715E8FEAE0001548E /* DRPShotViewController.m */,
+				8614422515FE45CF00A83132 /* DRPCommentsCell.h */,
+				8614422615FE45CF00A83132 /* DRPCommentsCell.m */,
 				8671FD0715F5664300F38B30 /* UIImage+Pixels.m */,
 				8671FD0815F5664300F38B30 /* UIImage+Pixels.h */,
 				862BE35615E2D2E200927522 /* MainStoryboard.storyboard */,
@@ -410,6 +415,7 @@
 				86F8112315FBC53600DF0692 /* DRPColorResultsController.m in Sources */,
 				8608DC9615FD34E9000E625B /* DRPColorResultsTableView.m in Sources */,
 				8608DC9A15FD350E000E625B /* DRPColorResultsCell.m in Sources */,
+				8614422715FE45CF00A83132 /* DRPCommentsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
