@@ -31,6 +31,11 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *enclosing_scrollview;
 
+@property (nonatomic, strong) NSThread *avatarimagesthread;
+
+@property (nonatomic, strong) NSThread *commentparsethread;
+
+
 -(void) get_shot;
 
 @end

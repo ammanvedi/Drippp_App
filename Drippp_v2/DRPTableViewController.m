@@ -23,6 +23,7 @@
 #import "DRPShotViewController.h"
 #import "DRPColorPickerController.h"
 #import <MobileCoreServices/MobileCoreServices.h> 
+#import "SVPullToRefresh.h"
 
 @interface DRPTableViewController ()
 
@@ -60,7 +61,9 @@ int lower = perpage;
 {
     [super viewDidLoad];
     
+    NSLog(@"%@", @"DIDLOAD");
     
+  
     
     api_category = @"popular";
     
@@ -136,6 +139,8 @@ int lower = perpage;
 - (void)viewDidUnload
 {
     //TO-DO determine when called setnil accordingly
+    
+        NSLog(@"%@", @"DIDLOAD");
     
     [self setRefresh_Button:nil];
     [self setNav_item:nil];
@@ -312,6 +317,14 @@ int lower = perpage;
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
+        NSLog(@"%@", @"willappear");
+    [self addinfinitescroll];
+
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     //create a obect to enable referral to the destinationviewcontroller (DVC)
@@ -348,7 +361,11 @@ int lower = perpage;
     }
     
     //indicate that the thread has terminated/finished
+    
+    [self addinfinitescroll];
+    
     [self.tableView reloadData];
+    
     
     threaddone = true;
     
@@ -364,7 +381,6 @@ int lower = perpage;
     //Method to update the ProgressView
     //set it to increase by 1/30
     //i.e. one thirt-eth increase for each of 30 images to download
-    
     float incr = PRGView.progress + (1.0f/(float)perpage);
     NSLog(@"incr: %f", incr);
     [PRGView setProgress:incr animated:YES];
@@ -376,6 +392,26 @@ int lower = perpage;
     
 }
 
+
+-(void)addinfinitescroll{
+    
+    __weak DRPTableViewController *weakSelf = self;
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        
+        //ibaction methid called on the button click of the refresh button
+        [weakSelf.Refresh_Button setEnabled:false];
+        //create a progressview for display in the navigationbar
+        weakSelf.PRGView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        //initialize the progressview to 0 progress
+        [weakSelf.PRGView setProgress:0.0f];
+        //set the progressview to display
+        weakSelf.nav_item.titleView = PRGView;
+        //create and begin a thread to get the next page
+        [NSThread detachNewThreadSelector:@selector(get_next_page) toTarget:weakSelf withObject:nil];
+        
+    }];
+}
 
 
 @end

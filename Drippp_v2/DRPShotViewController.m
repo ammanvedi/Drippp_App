@@ -26,9 +26,12 @@
 @synthesize enclosing_scrollview;
 @synthesize Commentsarray;
 @synthesize AvatarCommentsArray;
+@synthesize avatarimagesthread;
+@synthesize commentparsethread;
 
 bool have_comments = false;
 bool have_avatars = false;
+bool must_stop_loops = false;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +45,10 @@ bool have_avatars = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    avatarimagesthread = [[NSThread alloc] initWithTarget:self selector:@selector(get_comment_avatars) object:nil];
+    
+    commentparsethread = [[NSThread alloc] initWithTarget:self selector:@selector(get_and_parse_comments) object:nil];
     
     [self.enclosing_scrollview setContentSize:CGSizeMake(320, 600)];
     
@@ -69,9 +76,13 @@ bool have_avatars = false;
     
     if ([[passedData valueForKey:@"comments_count"] integerValue] == 0 ) {
         NSLog(@"did not parse comments");
+        [self.comments_table_view setHidden:YES];
     }else{
-        [NSThread detachNewThreadSelector:@selector(get_and_parse_comments) toTarget:self withObject:nil];
-
+        
+       // [NSThread detachNewThreadSelector:@selector(get_and_parse_comments) toTarget:self withObject:nil];
+        [commentparsethread start];
+        
+        [self.comments_table_view setHidden:NO];
     }
 
     
@@ -87,6 +98,19 @@ bool have_avatars = false;
     [self setCommentsarray:nil];
     have_avatars = false;
     have_comments = false;
+    must_stop_loops = true;
+    
+    if ([avatarimagesthread isExecuting]) {
+        [avatarimagesthread cancel];
+    }
+    
+    if ([commentparsethread isExecuting]) {
+    [commentparsethread cancel];
+}
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    must_stop_loops = false;
 }
 
 - (void)viewDidUnload
@@ -129,7 +153,7 @@ bool have_avatars = false;
     if (have_comments) {
         return [Commentsarray count];
     }
-    return 5;
+    return 1;
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -147,6 +171,8 @@ bool have_avatars = false;
     if (have_comments) {
         
         [cell.Comment_Body_Textview setText:[[Commentsarray objectAtIndex:[indexPath row]] objectForKey:@"body"]];
+        
+        [cell.name_label setText:[[Commentsarray objectAtIndex:[indexPath row]] valueForKeyPath:@"player.name"]];
         
         if (have_avatars) {
             [cell.avatarimageview setImage:[AvatarCommentsArray objectAtIndex:[indexPath row]]];
@@ -171,12 +197,17 @@ bool have_avatars = false;
     for (int x = 0; x<=([Commentsarray count] - 1); x++) {
         NSLog(@"%@", [[Commentsarray objectAtIndex:x] objectForKey:@"body"]);
         NSLog(@"count: %i", x);
+        
+        
     }
 
     have_comments = true;
     
     [self performSelectorOnMainThread:@selector(update_tableview_on_main) withObject:nil waitUntilDone:NO];
-    [NSThread detachNewThreadSelector:@selector(get_comment_avatars) toTarget:self withObject:nil];
+    
+    //[NSThread detachNewThreadSelector:@selector(get_comment_avatars) toTarget:self withObject:nil];
+    
+    [avatarimagesthread start];
     
 }
 
@@ -192,19 +223,35 @@ bool have_avatars = false;
         UIImage *avatarimage = [UIImage imageWithData:avatardata];
         NSLog(@"count: %i", x);
         
+        NSLog(@"%@", @"calling the loop");
+        
         if (avatarimage != nil) {
             [AvatarCommentsArray addObject:avatarimage];
         }else{
             [AvatarCommentsArray addObject:phavatar];
         }
         
+        if (must_stop_loops) {
+            break;
+        }
+        
     }
-    have_avatars = true;
+    if (must_stop_loops == false) {
+        have_avatars = true;
         [self performSelectorOnMainThread:@selector(update_tableview_on_main) withObject:nil waitUntilDone:NO];
+    }
+    
 }
 
 -(void)update_tableview_on_main{
         [self.comments_table_view reloadData];
+}
+
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"comment_cell.png"]];
 }
 
 @end

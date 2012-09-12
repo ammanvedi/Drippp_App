@@ -11,6 +11,7 @@
 @implementation DRPCommentsCell
 @synthesize Comment_Body_Textview;
 @synthesize avatarimageview;
+@synthesize name_label;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

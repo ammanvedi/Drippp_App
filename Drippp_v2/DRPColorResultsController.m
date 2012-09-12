@@ -9,6 +9,7 @@
 #import "DRPColorResultsController.h"
 #import "DRPColorResultsCell.h"
 #import "DRPShotViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DRPColorResultsController ()
 
@@ -24,6 +25,7 @@
 @synthesize colorpassData;
 
 bool have_images = false;
+bool have_ids = false;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,18 +42,26 @@ bool have_images = false;
     [main_table_view setDelegate:self];
     [main_table_view setDataSource:self];
     passed_ids = [[NSMutableArray alloc] init];
+    //test case
+    //passed_url =@"http://dribbble.com/colors/C417D0?percent=35&variance=50";
     [NSThread detachNewThreadSelector:@selector(getidsforcolor:) toTarget:self withObject:passed_url];
     colorshotsarray = [[NSMutableArray alloc] init];
     colorimagesarray = [[NSMutableArray alloc] init];
+    
 	// Do any additional setup after loading the view.
     //[main_table_view setFrame:CGRectMake(0, 240, 320, 240)];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     
-    [self setColorimagesarray:nil];
-    [self setColorshotsarray:nil];
-    have_images = false;
+   // [self setColorimagesarray:nil];
+   // [self setColorshotsarray:nil];
+    NSLog(@"%@", @"will dissapear tbview");
+    //have_images = false;
+    
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        have_images = false;
+    }
 
 }
 
@@ -72,8 +82,11 @@ bool have_images = false;
     if (have_images == true) {
        return [colorimagesarray count];
     }else{
-        return 5;
-    }
+        return 1;
+    } 
+    
+    
+
 }
 
 
@@ -90,9 +103,15 @@ bool have_images = false;
     static NSString *CellIdentifier = @"Color_result_cell";
     DRPColorResultsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+
     if (have_images == true) {
         [cell.result_imageview setImage:[colorimagesarray objectAtIndex:[indexPath row]]];
     }
+
+    
+
+    
+
     
     return cell;
 }
@@ -101,6 +120,7 @@ bool have_images = false;
 {
     [self setMain_table_view:nil];
     [super viewDidUnload];
+    NSLog(@"%@", @"did unload tbview");
     // Release any retained subviews of the main view.
 }
 
@@ -126,12 +146,22 @@ bool have_images = false;
     
     for (int parsecount = 0; parsecount <=10; parsecount++) {
         
-        [scanner scanUpToString:@"<li id=\"screenshot-" intoString:&buffer];
-        [scanner setScanLocation:scanner.scanLocation + 19];
-        [scanner scanUpToString:@"\"" intoString:&idofshot];
-        [passed_ids addObject:idofshot];
-        NSLog(@"ID: %@", idofshot);
+
+        
+        @try {
+            [scanner scanUpToString:@"<li id=\"screenshot-" intoString:&buffer];
+            [scanner setScanLocation:scanner.scanLocation + 19];
+            [scanner scanUpToString:@"\"" intoString:&idofshot];
+            [passed_ids addObject:idofshot];
+            NSLog(@"ID: %@", idofshot);
+        }
+        @catch (NSException *exception) {
+            break;
+        }
+
     }
+
+    
     
     [self getresultsimages];
     
@@ -140,8 +170,8 @@ bool have_images = false;
 -(void) getresultsimages{
     
      NSError *jsonerror;
-    
-    for (int x =0; x <= 10; x++) {
+    NSLog(@"count initial: %i", [colorshotsarray count]);
+    for (int x =0; x <= [passed_ids count]-1; x++) {
         NSString *apistring = [[NSString alloc] initWithFormat:@"http://api.dribbble.com/shots/%@", [passed_ids objectAtIndex:x]];
         NSData *jsondataset = [NSData dataWithContentsOfURL:[NSURL URLWithString:apistring]];
         //load a dictionary with response data
@@ -150,7 +180,7 @@ bool have_images = false;
          NSLog(@"count: %i", [colorshotsarray count]);
     }
     
-    for (int x =0; x <= 10; x++){
+    for (int x =0; x <= [passed_ids count]-1; x++){
         NSData *imagedata = [NSData dataWithContentsOfURL: [NSURL URLWithString:[[self.colorshotsarray objectAtIndex:x] objectForKey:@"image_teaser_url"]]];
         
         UIImage *colorsearchimage = [UIImage imageWithData:imagedata];
@@ -184,6 +214,8 @@ bool have_images = false;
     //when a user clicks a cell the object of data that corresponds to that cell is passed
     colorpassData = [colorshotsarray objectAtIndex:[indexPath row]];
     //For Debug
+    
+    NSLog(@"indexpath %i", [indexPath row]);
     return indexPath;
 }
 

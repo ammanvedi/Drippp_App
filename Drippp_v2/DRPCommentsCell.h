@@ -11,5 +11,6 @@
 @interface DRPCommentsCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UITextView *Comment_Body_Textview;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarimageview;
+@property (weak, nonatomic) IBOutlet UILabel *name_label;
 
 @end
